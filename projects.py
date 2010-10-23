@@ -3,7 +3,7 @@ from google.appengine.ext import db
 
 # FACADE
 def get_projects():
-    return []
+    return Project.all().fetch()
 
 def create_project(proj):
     if isinstance(proj, Project):
@@ -17,8 +17,8 @@ class Project(db.Model)
     description = db.TextProperty()
     ranking = db.IntegerProperty()
     name = db.StringProperty()
-    keyworkds = db.ListProperty(str)
-    references = db.ListProperty(str)
+    keyworkds = db.StringListProperty()
+    references = db.StringListProperty()
 
     def __init__(self, name):
         self.name = name
